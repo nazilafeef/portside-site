@@ -1,0 +1,10 @@
+{
+  "name": "portside-agency",
+  "version": "1.0.0",
+  "scripts": {
+    "start": "npx serve -p 8080 ."
+  },
+  "dependencies": {
+    "serve": "^14.2.0"
+  }
+}
