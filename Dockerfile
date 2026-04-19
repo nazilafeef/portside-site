@@ -1,17 +1,23 @@
-# Use the official lightweight Node.js image
-FROM node:18-alpine
-WORKDIR /app
+FROM node:18-alpine AS base
 
-# Install dependencies
-COPY package*.json ./
+FROM base AS deps
+RUN apk add --no-cache libc6-compat
+WORKDIR /app
+COPY package.json ./ 
 RUN npm install
 
-# Copy local code to the container image
+FROM base AS builder
+WORKDIR /app
+COPY --from=deps /app/node_modules ./node_modules
 COPY . .
-
-# Build the Next.js app
 RUN npm run build
 
-# Start the service
+FROM base AS runner
+WORKDIR /app
+ENV NODE_ENV production
+COPY --from=builder /app/.next/standalone ./ 
+COPY --from=builder /app/.next/static ./.next/static
+
 EXPOSE 8080
-CMD ["npm", "start"]
+ENV PORT 8080
+CMD ["node", "server.js"]
