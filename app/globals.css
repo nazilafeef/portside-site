@@ -3,19 +3,38 @@
 @tailwind utilities;
 
 :root {
-  --navy: #111E36;
-  --gold: #C5A059;
-  --ivory: #F8F9FA;
+  --color-navy: #111E36;
+  --color-gold: #C5A059;
+  --color-ivory: #F8F9FA;
+  --color-dark: #0A1628;
 }
 
 body {
-  background-color: var(--navy);
-  color: var(--ivory);
-  -webkit-user-select: none; user-select: none;
+  background-color: var(--color-dark);
+  color: var(--color-ivory);
+  font-family: 'Inter', sans-serif;
 }
 
-.hero-bg {
-  background: linear-gradient(rgba(17, 30, 54, 0.85), rgba(17, 30, 54, 0.95)), 
-              url('https://images.unsplash.com/photo-1544449553-9a4a5c400172?auto=format&fit=crop&q=80&w=2070');
-  background-size: cover; background-position: center;
+.glass {
+  @apply backdrop-blur-md bg-white/5 border border-white/10 shadow-lg;
+}
+
+.glass-morphism {
+  @apply backdrop-blur-md bg-white/5 border border-white/10 shadow-lg;
+}
+
+.gradient-text {
+  @apply bg-clip-text text-transparent bg-gradient-to-r from-brand-gold to-white;
+}
+
+.btn {
+  @apply px-8 py-4 rounded-lg font-bold transition-all active:scale-95 inline-flex items-center justify-center;
+}
+
+.btn-gold {
+  @apply bg-brand-gold text-brand-navy hover:bg-white hover:text-brand-gold;
+}
+
+input, select, textarea {
+  @apply bg-white/5 border border-white/10 p-3 rounded-lg outline-none focus:border-brand-gold transition-colors text-white w-full;
 }

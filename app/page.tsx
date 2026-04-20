@@ -1,31 +1,49 @@
-"use client";
-import { motion } from 'framer-motion';
+import React from 'react';
+import Hero from '../components/Hero';
+import Link from 'next/link';
+import Navbar from '../components/Navbar';
+import Footer from '../components/Footer';
 
-export default function HomePage() {
-  const discussFixture = () => {
-    const msg = "Let's discuss a fixture.";
-    window.open("https://wa.me/9609249669?text=" + encodeURIComponent(msg), '_blank');
-  };
-
+export default function Home() {
   return (
-    <main className="hero-bg min-h-screen flex flex-col items-center justify-center text-center px-6">
-      <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
-        <h1 className="text-4xl md:text-7xl mb-6 leading-tight max-w-4xl font-serif text-[#F8F9FA]">
-          Trusted Maritime Partners in the <span className="text-[#C5A059]">Indian Ocean</span>
-        </h1>
-        <p className="max-w-xl text-lg text-[#F8F9FA]/70 mb-12 mx-auto font-light">
-          We bridge the gap between ship owners and charterers with local expertise and global reach.
-        </p>
-        <div className="flex flex-col sm:flex-row gap-5 justify-center">
-          <button onClick={discussFixture} className="bg-[#C5A059] text-[#111E36] px-12 py-4 font-bold uppercase tracking-widest hover:scale-105 transition shadow-xl">
-            Discuss a Fixture
-          </button>
-        </div>
-      </motion.div>
-
-      <section className="w-full mt-24 opacity-50 text-[10px] md:text-xs font-bold uppercase tracking-[0.3em] flex justify-center gap-8">
-        <span>BIMCO Member</span> <span>IBIA Member</span> <span>IMO Registered</span>
+    <main className="bg-brand-navy min-h-screen">
+      {/* Navigation */}
+      <Navbar />
+      
+      {/* Hero Section */}
+      <section id="home">
+        <Hero />
       </section>
+      
+      {/* Services Overview Section */}
+      <section id="services" className="py-24 px-6 max-w-7xl mx-auto">
+        <div className="grid md:grid-cols-2 gap-12">
+          {/* Bunkering Card */}
+          <div className="bg-brand-ivory/5 p-12 border border-brand-gold/20 rounded-sm hover:border-brand-gold transition-all group">
+            <h2 className="font-display text-3xl font-bold text-white uppercase mb-6">Bunker Fuel Maldives</h2>
+            <p className="text-brand-ivory/60 mb-8 text-lg font-light leading-relaxed">
+              Strategically positioned to serve vessels transiting the Indian Ocean. We provide VLSFO and LSMGO with institutional reliability.
+            </p>
+            <Link href="/bunkering" className="text-brand-gold uppercase tracking-widest text-sm font-bold group-hover:translate-x-2 transition-transform inline-block">
+              Request Quotation →
+            </Link>
+          </div>
+
+          {/* Chartering Card */}
+          <div className="bg-brand-ivory/5 p-12 border border-brand-gold/20 rounded-sm hover:border-brand-gold transition-all group">
+            <h2 className="font-display text-3xl font-bold text-white uppercase mb-6">Vessel Chartering</h2>
+            <p className="text-brand-ivory/60 mb-8 text-lg font-light leading-relaxed">
+              Specializing in Handy and Supramax fixtures. We bridge the gap between ship owners and charterers with global reach.
+            </p>
+            <Link href="/chartering" className="text-brand-gold uppercase tracking-widest text-sm font-bold group-hover:translate-x-2 transition-transform inline-block">
+              Discuss a Fixture →
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* Footer & Contact */}
+      <Footer />
     </main>
   );
 }

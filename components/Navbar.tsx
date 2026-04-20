@@ -1,21 +1,34 @@
 "use client";
+import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 
-export default function Navbar() {
+const Navbar = () => {
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => setIsScrolled(window.scrollY > 20);
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
   return (
-    <header className="fixed w-full z-50 bg-[#111E36]/95 backdrop-blur-sm border-b border-[#C5A059]/10">
-      <div className="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
-        <Link href="/" className="flex items-center gap-3">
-          <div className="flex flex-col text-left">
-            <span className="text-xl font-bold tracking-tight text-[#F8F9FA]">Portside Agency</span>
-            <span className="text-[10px] uppercase tracking-[0.2em] text-[#C5A059]/80">Republic of Maldives</span>
-          </div>
+    <nav className={`fixed w-full z-50 transition-all duration-300 ${isScrolled ? 'bg-brand-navy/90 backdrop-blur-md py-4 shadow-xl' : 'bg-transparent py-6'}`}>
+      <div className="max-w-7xl mx-auto px-6 flex justify-between items-center">
+        <Link href="/" className="flex items-center gap-3 group">
+          <img src="/logo.jpg" alt="Logo" className="h-10 w-auto rounded-sm" />
+          <span className="text-brand-ivory font-display font-bold tracking-tighter text-lg md:text-xl">
+            Portside Agency <span className="text-brand-gold">Pvt Ltd</span>
+          </span>
         </Link>
-        <nav className="hidden md:flex gap-10 text-xs font-semibold uppercase tracking-widest text-[#F8F9FA]/80">
-          <Link href="/services" className="hover:text-[#C5A059] transition">Services</Link>
-          <Link href="/contact" className="border border-[#C5A059]/50 px-4 py-2 rounded-sm hover:bg-[#C5A059] hover:text-[#111E36] transition">Contact</Link>
-        </nav>
+        
+        <div className="hidden md:flex gap-8 items-center text-xs font-bold uppercase tracking-widest text-brand-ivory/80">
+          <Link href="/chartering" className="hover:text-brand-gold transition-colors">Chartering</Link>
+          <Link href="/bunkering" className="hover:text-brand-gold transition-colors">Bunkering</Link>
+          <Link href="/contact" className="hover:text-brand-gold transition-colors border border-brand-gold/30 px-4 py-2 rounded-full">Connect</Link>
+        </div>
       </div>
-    </header>
+    </nav>
   );
-}
+};
+
+export default Navbar;
