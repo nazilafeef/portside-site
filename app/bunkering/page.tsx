@@ -17,8 +17,8 @@ export default function BunkeringPage() {
     <main className="min-h-screen bg-brand-navy pt-32 pb-20 px-6">
       <div className="max-w-4xl mx-auto">
         <div className="text-center mb-16">
-          <h1 className="text-5xl font-display font-bold text-brand-ivory uppercase tracking-tighter">Bunker Trading</h1>
-          <p className="text-brand-gold uppercase tracking-[0.3em] text-xs mt-4">Fuel & Lubricant Supply RFQ</p>
+          <h1 className="text-5xl font-display font-bold text-brand-ivory uppercase tracking-tight">Bunker Fuel Maldives</h1>
+<p className="text-brand-gold uppercase tracking-[0.25em] text-[10px] sm:text-xs mt-4 font-medium">Your Operational Link for Indian Ocean Physical Supply</p>
         </div>
 
         <form onSubmit={handleSubmit} className="bg-white/5 p-8 md:p-12 rounded-lg border border-white/10 grid grid-cols-1 md:grid-cols-2 gap-6">
